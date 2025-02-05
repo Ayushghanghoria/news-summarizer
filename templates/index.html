@@ -8,17 +8,20 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <style>
       body {
-        background-color: #f8f9fa;
+        background: url("https://source.unsplash.com/1600x900/?news,technology")
+          no-repeat center center fixed;
+        background-size: cover;
       }
       .container {
         max-width: 700px;
         margin: 50px auto;
         padding: 20px;
-        background: white;
+        background: rgba(255, 255, 255, 0.9);
         border-radius: 10px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
       }
       textarea {
         width: 100%;
@@ -27,25 +30,33 @@
     </style>
   </head>
   <body>
-    <div class="container">
-      <h2 class="text-center">📰 News Summarizer</h2>
+    <div class="container text-center">
+      <h2 class="text-primary">📰 AI News Summarizer</h2>
+      <p class="text-muted">
+        Enter a news article URL to generate a concise summary.
+      </p>
       <form method="POST">
         <div class="mb-3">
-          <label class="form-label">Enter News Article URL:</label>
-          <input type="text" class="form-control" name="url" required />
+          <input
+            type="text"
+            class="form-control"
+            name="url"
+            placeholder="Paste article URL here..."
+            required
+          />
         </div>
-        <button type="submit" class="btn btn-primary w-100">Summarize</button>
+        <button type="submit" class="btn btn-success w-100">Summarize</button>
       </form>
 
       {% if article_text %}
       <div class="mt-4">
-        <h4>📄 Original Article:</h4>
+        <h4 class="text-secondary">📄 Original Article:</h4>
         <textarea class="form-control" readonly>
-{{ article_text[:5000] }}...</textarea
+{{ article_text[:1000] }}...</textarea
         >
       </div>
       <div class="mt-4">
-        <h4>📝 Summarized Text:</h4>
+        <h4 class="text-danger">📝 AI Summary:</h4>
         <textarea class="form-control" readonly>{{ summary }}</textarea>
       </div>
       {% endif %} {% if error %}
