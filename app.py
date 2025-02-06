@@ -17,7 +17,6 @@ def extract_text(url):
 def summarize_text(text):
     """Summarize the extracted text"""
     min_length, max_length = len(text)//10, len(text)//5
-    print(text, "\n\n", "\n\n", min_length, max_length)
     summary = summarizer(text, max_length=max_length, min_length=min_length, do_sample=False)
     return summary[0]['summary_text']
 
